@@ -15,11 +15,11 @@
 int	map_is_valid(int argc, char **argv)
 {
 	if (argc == 1)
-		return (error("no arg"));
+		return (errors("no arg"));
 	if (argc > 2)
 		printf("%s\n", "Seulement le premier argument sera pris en compte frérot");
 	if (check_ext(argv, ".ber") <= 0)
-		return (error("wrong extension of the file"));
+		return (errors("wrong extension of the file"));
 	return (1);
 }
 
