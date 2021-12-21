@@ -40,7 +40,7 @@ typedef struct s_map
 	int			line;
 	int			end_col;
 	int			collect;
-	t_pos		player_bup;
+	t_pos		player_ini;
 	t_map_check	check;
 	char		**map;
 	char		**save;
@@ -84,3 +84,34 @@ typedef struct	s_game
 	t_map	map;
 	t_pic	pic;
 }			t_game;
+
+void	start_gamestruct(t_game game); //1
+void	init_mapstruct(t_map map);//3
+void	init_window(t_game game); //9
+void	print_map(t_game *game); //10
+void	verify(int valid, t_map map);
+void	move_player(t_game *game, int line, int col, int key);
+void	free_map(char **map_str, t_map map);
+void	reset(t_game game);
+void	kill_player(t_game *game)
+
+int	init_game(t_game game, int argc, char **argv);//2
+int	map_is_valid(int argc, char **argv);//5
+int	check_ext(char *argv, char *ext); //6
+int	errors(char *message);//7
+int	valid_cpe(t_map *map); //11
+int	check(char c, t_map map, int col, int line);
+int	backup_map(t_map *map, char **map_str);
+int	action(t_game *game, int key);
+int	update(t_game *game);
+
+char	**init_map(t_game game, int argc, char **argv);//4
+char	**read_map(char *path, t_map map); //8
+
+void	init_collect(t_pic img, void *mlx);
+void	init_wall(t_pic img, void *mlx);
+void	init_exit(t_pic img, void *mlx);
+void	init_empty(t_pic img, void *mlx);
+void	init_player(t_pic img, void *mlx)
+
+#endif
