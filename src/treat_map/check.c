@@ -36,7 +36,7 @@ int	check_wall(char c)
 	return (0);
 }
 
-int	check_c(char c, t_map map, int col, int line)
+int	check_char(char c, t_map map, int col, int line)
 {
 	if (c == "P")
 	{
