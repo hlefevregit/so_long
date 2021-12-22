@@ -13,9 +13,31 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # define TILES 50
+# define NORTH 0x77
+# define SOUTH 0x73
+# define EAST 0x64
+# define WEST 0x61
+# define ESC 0xff1b
+# define R 0x15
+# define PATH_EX "./sprite/so_long_exit.png"
+# define PATH_CO "./sprite/so_long_collect.png"
+# define PATH_WA "./sprite/so_long_wall.png"
+# define PATH_ES "./sprite/so_long_empty.png"
+# define PATH_PE "./sprite/so_long_player_east.png"
+# define PATH_PS "./sprite/so_long_player_east.png"
+# define PAHT_PW "./sprite/so_long_player_west.png"
+# define PATH_PN "./sprite/so_long_player_west.png"
+
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <limits.h>
+# include <fcntl.h>
+# include "mlx/minilibx_mms_20200219/mlx.h"
+# include "mlx/minilibx_opengl_20191021/mlx.h"
+# include "src/gnl/get_next_line.h"
 
 typedef struct s_position
 {
@@ -93,7 +115,7 @@ void	verify(int valid, t_map map);
 void	move_player(t_game *game, int line, int col, int key);
 void	free_map(char **map_str, t_map map);
 void	reset(t_game game);
-void	kill_player(t_game *game)
+void	kill_player(t_game *game);
 
 int	init_game(t_game game, int argc, char **argv);//2
 int	map_is_valid(int argc, char **argv);//5
@@ -112,6 +134,6 @@ void	init_collect(t_pic img, void *mlx);
 void	init_wall(t_pic img, void *mlx);
 void	init_exit(t_pic img, void *mlx);
 void	init_empty(t_pic img, void *mlx);
-void	init_player(t_pic img, void *mlx)
+void	init_player(t_pic img, void *mlx);
 
 #endif
