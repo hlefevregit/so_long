@@ -25,7 +25,7 @@
 # define PATH_ES "./sprite/so_long_empty.png"
 # define PATH_PE "./sprite/so_long_player_east.png"
 # define PATH_PS "./sprite/so_long_player_east.png"
-# define PAHT_PW "./sprite/so_long_player_west.png"
+# define PATH_PW "./sprite/so_long_player_west.png"
 # define PATH_PN "./sprite/so_long_player_west.png"
 
 # include <string.h>
@@ -35,9 +35,8 @@
 # include <stdio.h>
 # include <limits.h>
 # include <fcntl.h>
-# include "mlx/minilibx_mms_20200219/mlx.h"
-# include "mlx/minilibx_opengl_20191021/mlx.h"
 # include "src/gnl/get_next_line.h"
+# include <mlx.h>
 
 typedef struct s_position
 {
@@ -45,14 +44,12 @@ typedef struct s_position
 	int	y;
 }		t_pos;
 
-
 typedef struct s_check_map
 {
 	int	player;
 	int	exit;
 	int	collect;
 }		t_map_check;
-
 
 typedef struct s_map
 {
@@ -68,15 +65,6 @@ typedef struct s_map
 	char		**save;
 }				t_map;
 
-typedef struct s_side
-{
-	int	north;
-	int	east;
-	int	west;
-	int	south;
-}		t_side;
-
-
 typedef struct s_valeur
 {
 	void	*img;
@@ -85,8 +73,15 @@ typedef struct s_valeur
 	t_pos	size;
 }			t_val;
 
+typedef struct s_side
+{
+	t_val	north;
+	t_val	east;
+	t_val	west;
+	t_val	south;
+}		t_side;
 
-typedef struct	s_pic
+typedef struct s_pic
 {
 	t_val	wall;
 	t_side	player;
@@ -95,7 +90,7 @@ typedef struct	s_pic
 	t_val	empty_space;
 }			t_pic;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
@@ -103,37 +98,41 @@ typedef struct	s_game
 	int		end_game;
 	int		steps;
 	int		side;
+	float	reset;
 	t_map	map;
 	t_pic	pic;
 }			t_game;
 
-void	start_gamestruct(t_game game); //1
-void	init_mapstruct(t_map map);//3
-void	init_window(t_game game); //9
-void	print_map(t_game *game); //10
+void	start_gamestruct(t_game game);
+void	init_mapstruct(t_map map);
+void	init_window(t_game game);
+void	print_map(t_game *game);
 void	verify(int valid, t_map map);
 void	move_player(t_game *game, int line, int col, int key);
 void	free_map(char **map_str, t_map map);
-void	reset(t_game game);
+void	reset(t_game *game);
 void	kill_player(t_game *game);
+void	check_last_lines(char *map_str, t_map map);
 
-int	init_game(t_game game, int argc, char **argv);//2
-int	map_is_valid(int argc, char **argv);//5
-int	check_ext(char *argv, char *ext); //6
-int	errors(char *message);//7
-int	valid_cpe(t_map *map); //11
-int	check(char c, t_map map, int col, int line);
-int	backup_map(t_map *map, char **map_str);
-int	action(t_game *game, int key);
-int	update(t_game *game);
+int		init_game(t_game game, int argc, char **argv);
+int		map_is_valid(int argc, char **argv);
+int		check_ext(char *argv, char *ext);
+int		errors(char *message);
+int		valid_cpe(t_map *map);
+int		check(char c, t_map map, int col, int line);
+int		backup_map(t_map *map, char **map_str);
+int		action(t_game *game, int key);
+int		update(t_game *game);
 
-char	**init_map(t_game game, int argc, char **argv);//4
-char	**read_map(char *path, t_map map); //8
+char	*ft_strdup(const char *src);
+char	*ft_itoa(int n);
+char	**init_map(t_game game, int argc, char **argv);
+char	**read_map(char *path, t_map map);
 
-void	init_collect(t_pic img, void *mlx);
-void	init_wall(t_pic img, void *mlx);
-void	init_exit(t_pic img, void *mlx);
-void	init_empty(t_pic img, void *mlx);
-void	init_player(t_pic img, void *mlx);
+void	init_collect(t_pic *img, void *mlx);
+void	init_wall(t_pic *img, void *mlx);
+void	init_exit(t_pic *img, void *mlx);
+void	init_empty(t_pic *img, void *mlx);
+void	init_player(t_pic *img, void *mlx);
 
 #endif
