@@ -25,12 +25,12 @@ int	count_lines(int fd, int cnt_lines, int cnt_col, t_map map)
 		verify(check(buffer, map, cnt_col, cnt_lines), map);
 		if (buffer == '\n')
 			cnt_lines++;
-		else if (buffer  != '\n' && size > 0 )
+		else if (buffer != '\n' && size > 0)
 			cnt_col++;
-		if	(map.end_col == 0 && buffer == '\n')
+		if ((map.end_col == 0) && (buffer == '\n'))
 			map.end_col = cnt_col - 1;
 		if (map.end_col != cnt_col - 1 && (buffer == '\n' || size == 0))
-			return (errors("probleme de structure de map, (moins de col que de lignes)"))
+			return (errors("(moins de col que de lignes)"));
 		else if (buffer == '\n')
 			cnt_col = 0;
 		if (size == 0)
@@ -51,10 +51,10 @@ int	lines(char *path, t_map map)
 		return (errors("Pas bon ça frérot fait un effort"));
 	cnt_lines = 1;
 	cnt_col = 0;
-	cnt_lines = count_lines(fd, cnt_lines, cnt_col, map)
+	cnt_lines = count_lines(fd, cnt_lines, cnt_col, map);
 	if (cnt_lines <= 0)
 		return (errors("Non mais ça casse les couilles la"));
-	close(fd)
+	close(fd);
 	return (cnt_lines);
 }
 
@@ -81,7 +81,7 @@ void	check_last_lines(char *map_str, t_map map)
 	i = 0;
 	while (i < map.end_col)
 	{
-		if (map_str[i] == "1")
+		if (map_str[i] == '1')
 			i++;
 		else
 		{
@@ -89,7 +89,7 @@ void	check_last_lines(char *map_str, t_map map)
 			break ;
 		}
 	}
-	cpe = valid_cpe(map);
+	cpe = valid_cpe(&map);
 	if (cpe == 0)
 		map.valid = 0;
 }
@@ -102,19 +102,17 @@ char	**read_map(char *path, t_map map)
 
 	map_str = map_alloc(path, map);
 	if (!map_str)
-		return (error_null("Y a un probleme je crois,
-			et de ce que je sais, c'est que ça vient de
-			l'allocation de la map :/"));
+		return (error_null("Error d'alloc"));
 	fd = open(path, O_RDONLY);
 	i = 0;
 	while (map_str)
 		map_str[i++] = get_next_line(fd);
 	check_last_line(map_str[i - 1], map);
-	backup_map(map, map_str);
+	backup_map(&map, map_str);
 	if (map.valid == 0)
 	{
 		free_map(map_str, map);
-		return (error_null("map invalide mon pote"))
+		return (error_null("map invalide mon pote"));
 	}
 	close(fd);
 	return (map_str);

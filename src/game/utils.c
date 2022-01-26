@@ -17,21 +17,21 @@ void	kill_player(t_game *game)
 	int	x;
 	int	y;
 
-	x = game.map.player.x;
-	y = game.map.player.y;
-	game.map.map[x][y] = '0';
-	game.side = "SOUTH";
+	x = game->map.player.x;
+	y = game->map.player.y;
+	game->map.map[x][y] = '0';
+	game->side = SOUTH;
 	print_map(game);
 }
 
-void	reset(t_game game)
+void	reset(t_game *game)
 {
-	recovery(game.map);
+	recovery(game->map);
 	game->map.player.x = game->map.player_ini.x;
 	game->map.player.y = game->map.player_ini.y;
-	game.end_game = 0;
-	game.steps = 0;
-	game.side = SOUTH;
+	game->end_game = 0;
+	game->steps = 0;
+	game->side = SOUTH;
 }
 
 int	update(t_game *game)
@@ -49,7 +49,7 @@ int	update(t_game *game)
 
 int	close_window(t_game *game)
 {
-	free_map(game->map.map, &game->map)
+	free_map(game->map.map, game->map);
 	exit(0);
 }
 
@@ -58,8 +58,8 @@ int	action(t_game *game, int key)
 	int	line;
 	int	col;
 
-	line = game.map.map.y;
-	col = game.map.map.x;
+	line = game->map.player.y;
+	col = game->map.player.x;
 	if (key == ESC)
 		close_window(game);
 	if (key == R)
@@ -72,7 +72,7 @@ int	action(t_game *game, int key)
 		col++;
 	if (key == WEST)
 		col--;
-	if (!game.end_game)
+	if (!game->end_game)
 		move_player(game, line, col, key);
 	return (1);
 }

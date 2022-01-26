@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#define BUFFER_SIZE 256
 
 char	*get_backup(char *str)
 {

@@ -24,8 +24,8 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	start_gamestruct(&game);
-	if (init_game(&game, argc, argv) < 0)
+	start_gamestruct(game);
+	if (init_game(game, argc, argv) < 0)
 		return (0);
 	mlx_hook(game.win, 17, 0, close_win, (void *)&game);
 	mlx_hook(game.win, 2, 1L << 0, action, (void *)&game);

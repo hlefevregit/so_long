@@ -25,7 +25,7 @@ int	check_ext(char *argv, char *ext)
 	{
 		if (ext[l_ext] == argv[l_argv])
 		{
-			l_argv--:
+			l_argv--;
 			l_ext--;
 		}
 		else

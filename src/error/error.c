@@ -14,12 +14,12 @@
 
 int	errors(char *message)
 {
-	printf("%s\n", "ERROR", message);
+	printf("%s\n", message);
 	return (0);
 }
 
-void	error_null(char *message)
+void	*error_null(char *message)
 {
-	printf("%s\n", "ERROR", message);
+	printf("%s\n", message);
 	return (0);
 }

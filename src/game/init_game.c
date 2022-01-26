@@ -24,20 +24,21 @@ void	init_mapstruct(t_map map)
 
 char	**init_map(t_game game, int argc, char **argv)
 {
-	char **map;
+	char	**map;
 
-	if(!map_is_valid(argc, argv[1]))
-		return (error("la carte é pa bone gro nulos"));
-	map = read_map(argv[1], &game.map);
+	if (!map_is_valid(argc, &argv[1]))
+		return (error_null("la carte é pa bone gro nulos"));
+	map = read_map(argv[1], game.map);
 	if (!map)
-		return (error("c pa la bone carte mon reuf"));
+		return (error_null("c pa la bone carte mon reuf"));
 	return (map);
 }
 
 void	init_window(t_game game)
 {
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.map.col * TILES, game.map.line * TILES, "so_long mon frere");
+	game.win = mlx_new_window(game.mlx, game.map.col * TILES,
+			game.map.line * TILES, "so_long mon frere");
 }
 
 int	init_game(t_game game, int argc, char **argv)
@@ -50,7 +51,7 @@ int	init_game(t_game game, int argc, char **argv)
 	if (game.map.map == NULL)
 		return (-1);
 	init_window(game);
-	print_map(game);
+	print_map(&game);
 	game.init_game = 1;
 	return (1);
 }

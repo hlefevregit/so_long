@@ -17,7 +17,7 @@ int	valid_cpe(t_map *map)
 	if (map->check.collect < 1)
 		return (errors("WRONG ! (pas de pièces)"));
 	if (map->check.exit < 1)
-		return (errors("WRONg ! (pas d'exit"));
+		return (errors("WRONG ! (pas d'exit"));
 	if (map->check.player != 1)
 		return (errors("WRONG ! Pas de player"));
 	return (1);
@@ -38,19 +38,19 @@ int	check_wall(char c)
 
 int	check_char(char c, t_map map, int col, int line)
 {
-	if (c == "P")
+	if (c == 'P')
 	{
 		map.check.player += 1;
 		map.player.x = col;
 		map.player.y = line - 1;
-		map.player_bup.x = col;
-		map.player_bup.y = line - 1;
+		map.player_ini.x = col;
+		map.player_ini.y = line - 1;
 	}
-	if (c == "E")
+	if (c == 'E')
 		map.check.exit += 1;
-	if (c == "C")
+	if (c == 'C')
 		map.check.collect += 1;
-	if (c == "0" || c == "1" || c == "P" || c == "E" || c == "C")
+	if (c == '0' || c == '1' || c == 'P' || c == 'E' || c == 'C')
 		return (1);
 	return (0);
 }
