@@ -12,21 +12,23 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define TILES 50
-# define NORTH 0x77
-# define SOUTH 0x73
-# define EAST 0x64
-# define WEST 0x61
-# define ESC 0xff1b
-# define R 0x15
-# define PATH_EX "./sprite/so_long_exit.png"
-# define PATH_CO "./sprite/so_long_collect.png"
-# define PATH_WA "./sprite/so_long_wall.png"
-# define PATH_ES "./sprite/so_long_empty.png"
-# define PATH_PE "./sprite/so_long_player_east.png"
-# define PATH_PS "./sprite/so_long_player_east.png"
-# define PATH_PW "./sprite/so_long_player_west.png"
-# define PATH_PN "./sprite/so_long_player_west.png"
+
+# define TILES 96
+# define NORTH 13
+# define SOUTH 1
+# define EAST 2
+# define WEST 0
+# define ESC 0x35
+# define R 15
+# define BUFFER_SIZE 1
+# define PATH_EX "./sprite/exit.xpm"
+# define PATH_CO "./sprite/collect.xpm"
+# define PATH_WA "./sprite/wall.xpm"
+# define PATH_ES "./sprite/empty_spaces.xpm"
+# define PATH_PE "./sprite/player_east.xpm"
+# define PATH_PS "./sprite/player_east.xpm"
+# define PATH_PW "./sprite/player_west.xpm"
+# define PATH_PN "./sprite/player_west.xpm"
 
 # include <string.h>
 # include <unistd.h>
@@ -103,36 +105,42 @@ typedef struct s_game
 	t_pic	pic;
 }			t_game;
 
-void	start_gamestruct(t_game game);
-void	init_mapstruct(t_map map);
-void	init_window(t_game game);
+void	start_gamestruct(t_game *game);
+void	init_mapstruct(t_map *map);
+void	init_window(t_game *game);
 void	print_map(t_game *game);
-void	verify(int valid, t_map map);
+void	verify(int valid, t_map *map);
 void	move_player(t_game *game, int line, int col, int key);
-void	free_map(char **map_str, t_map map);
+void	free_map(char **map_str, t_map *map);
 void	reset(t_game *game);
 void	kill_player(t_game *game);
-void	check_last_lines(char *map_str, t_map map);
+void	check_last_lines(char *map_str, t_map *map);
+void	*error_null(const char *message);
 
-int		init_game(t_game game, int argc, char **argv);
-int		map_is_valid(int argc, char **argv);
+int		init_game(t_game *game, int argc, char **argv);
+int		map_is_valid(int argc, char *argv);
 int		check_ext(char *argv, char *ext);
 int		errors(char *message);
 int		valid_cpe(t_map *map);
-int		check(char c, t_map map, int col, int line);
+int		check(char c, t_map *map, int col, int line);
 int		backup_map(t_map *map, char **map_str);
-int		action(t_game *game, int key);
+int		action(int key, t_game *game);
 int		update(t_game *game);
+int		recovery(t_map *map);
+int		verify_move(t_game *game, int line, int col, int key);
+int		close_window(t_game *game);
 
 char	*ft_strdup(const char *src);
 char	*ft_itoa(int n);
-char	**init_map(t_game game, int argc, char **argv);
-char	**read_map(char *path, t_map map);
+char	**init_map(t_game *game, int argc, char **argv);
+char	**read_map(char *path, t_map *map);
 
 void	init_collect(t_pic *img, void *mlx);
 void	init_wall(t_pic *img, void *mlx);
 void	init_exit(t_pic *img, void *mlx);
 void	init_empty(t_pic *img, void *mlx);
 void	init_player(t_pic *img, void *mlx);
+
+t_pic	init_image(void *mlx);
 
 #endif

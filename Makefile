@@ -20,19 +20,18 @@ FILES =	$(PATH_MAP)check.c \
 		$(PATH_GNL)get_next_line_utils.c \
 		$(PATH_UT)check_ext.c \
 		$(PATH_UT)ft_itoa.c \
-		$(PATH_UT)ft_strlen.c \
 		$(PATH_UT)ft_strdup.c \
-		./src/so_long.c
+		./src/so_long.c \
 
 OBJ = ${FILES:.c=.o}
 
-FLAGS = -Wextra -Wall -Werror
+FLAGS = -Wextra -Wall -Werror -fsanitize=address
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -lz
 
 all:	${NAME}
 
 ${NAME}: ${OBJ}
-		gcc $(OBJ) $(MLXFLAGS) $(FLAGS) -o $(NAME)
+		gcc $(OBJ) -g $(MLXFLAGS) $(FLAGS) -o $(NAME)
 
 %o:	%.c
 	gcc $(FLAGS) -lmlx -c $< -o $@

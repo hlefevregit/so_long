@@ -23,39 +23,40 @@ int	valid_cpe(t_map *map)
 	return (1);
 }
 
-void	verify(int valid, t_map map)
+void	verify(int valid, t_map *map)
 {
-	if (map.valid == 1)
-		map.valid = valid;
+	if (map->valid == 1)
+		map->valid = valid;
 }
 
 int	check_wall(char c)
 {
-	if (c == 1)
+	if (c == '1')
 		return (1);
+	printf("%s\n", "error 3");
 	return (0);
 }
 
-int	check_char(char c, t_map map, int col, int line)
+int	check_char(char c, t_map *map, int col, int line)
 {
 	if (c == 'P')
 	{
-		map.check.player += 1;
-		map.player.x = col;
-		map.player.y = line - 1;
-		map.player_ini.x = col;
-		map.player_ini.y = line - 1;
+		map->check.player += 1;
+		map->player.x = col;
+		map->player.y = line - 1;
+		map->player_ini.x = col;
+		map->player_ini.y = line - 1;
 	}
 	if (c == 'E')
-		map.check.exit += 1;
+		map->check.exit += 1;
 	if (c == 'C')
-		map.check.collect += 1;
+		map->check.collect += 1;
 	if (c == '0' || c == '1' || c == 'P' || c == 'E' || c == 'C')
 		return (1);
 	return (0);
 }
 
-int	check(char c, t_map map, int col, int line)
+int	check(char c, t_map *map, int col, int line)
 {
 	int	valid_char;
 
@@ -64,7 +65,7 @@ int	check(char c, t_map map, int col, int line)
 		return (errors("Pas le bon char dans la map"));
 	if ((line == 1 || col == 0) && c != '\n')
 		return (check_wall(c));
-	if ((map.end_col == col) && c != '\n')
+	if ((map->end_col == col) && c != '\n')
 		return (check_wall(c));
 	return (1);
 }

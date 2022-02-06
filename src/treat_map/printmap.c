@@ -40,6 +40,21 @@ void	print_player(t_game *game, t_pos pos)
 			game->pic.player.west.img, pos.x, pos.y);
 }
 
+static void	sprite_print_obj(t_game *game, int line, int col)
+{
+	int	x;
+	int	y;
+
+	x = col * TILES;
+	y = line * TILES;
+	if (game->map.map[line][col] == 'E')
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->pic.exit.img, x, y);
+	if (game->map.map[line][col] == 'C')
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->pic.collect.img, x, y);
+}
+
 static void	sprite_print_env(t_game *game, int line, int col)
 {
 	int		x;
@@ -60,27 +75,13 @@ static void	sprite_print_env(t_game *game, int line, int col)
 		print_player(game, pos);
 }
 
-static void	sprite_print_obj(t_game *game, int line, int col)
-{
-	int	x;
-	int	y;
-
-	x = col * TILES;
-	y = line * TILES;
-	if (game->map.map[line][col] == 'E')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->pic.exit.img, x, y);
-	if (game->map.map[line][col] == 'C')
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->pic.collect.img, x, y);
-}
-
 void	print_map(t_game *game)
 {
 	int		line;
 	int		col;
 	char	*str;
 
+	//init_image(game->mlx);
 	line = 0;
 	while (line < game->map.line)
 	{
@@ -93,7 +94,8 @@ void	print_map(t_game *game)
 		}
 		line++;
 		str = ft_itoa(game->steps);
-		mlx_string_put(game->mlx, game->win, 120, 25, 0xFFFFFF, str);
+		mlx_string_put(game->mlx, game->win, 120, 25, 0xFF0000
+		, str);
 		free(str);
 		if (game->end_game)
 			mlx_string_put(game->mlx, game->win, 150, 25, 0xFFFFFF,

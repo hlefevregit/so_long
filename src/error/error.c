@@ -18,7 +18,7 @@ int	errors(char *message)
 	return (0);
 }
 
-void	*error_null(char *message)
+void	*error_null(const char *message)
 {
 	printf("%s\n", message);
 	return (0);
