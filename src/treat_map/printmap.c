@@ -94,6 +94,7 @@ void	print_map(t_game *game)
 		}
 		line++;
 		str = ft_itoa(game->steps);
+		ft_putstr(str);
 		mlx_string_put(game->mlx, game->win, 120, 25, 0xFF0000
 		, str);
 		free(str);
