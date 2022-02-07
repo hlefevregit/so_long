@@ -14,12 +14,14 @@
 
 int	errors(char *message)
 {
-	printf("%s\n", message);
+	ft_putstr("Error\n");
+	ft_putstr(message);
 	return (0);
 }
 
 void	*error_null(const char *message)
 {
-	printf("%s\n", message);
+	ft_putstr("Error\n");
+	ft_putstr(message);
 	return (0);
 }
