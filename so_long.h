@@ -140,6 +140,7 @@ void	init_wall(t_pic *img, void *mlx);
 void	init_exit(t_pic *img, void *mlx);
 void	init_empty(t_pic *img, void *mlx);
 void	init_player(t_pic *img, void *mlx);
+void	ft_putstr(char *str);
 
 t_pic	init_image(void *mlx);
 
