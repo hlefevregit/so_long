@@ -14,12 +14,14 @@
 # define SO_LONG_H
 
 # define TILES 96
-# define NORTH 13
-# define SOUTH 1
-# define EAST 2
-# define WEST 0
-# define ESC 0x35
-# define R 15
+
+# define NORTH 119
+# define SOUTH 115
+# define EAST 100
+# define WEST 97
+# define ESC 65307
+# define R 114
+
 # define BUFFER_SIZE 1
 # define PATH_EX "./sprite/exit.xpm"
 # define PATH_CO "./sprite/collect.xpm"

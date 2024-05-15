@@ -28,11 +28,11 @@ void	free_map(char **map_str, t_map *map)
 	int	i;
 
 	i = 0;
-	while (i <= map->line)
+	while (i < map->line - 1)
 		free(map_str[i++]);
 	free(map_str[i]);
 	i = 0;
-	while (i <= map->line)
+	while (i < map->line - 1)
 		free(map->save[i++]);
 	free(map->save[i]);
 }
