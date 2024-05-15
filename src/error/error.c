@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:45:15 by marvin            #+#    #+#             */
-/*   Updated: 2021/12/20 17:45:15 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/07 17:41:24 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:41:24 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	errors(char *message)
 	return (0);
 }
 
-void	*error_null(const char *message)
+void	*error_null(char *message)
 {
 	ft_putstr("Error\n");
 	ft_putstr(message);

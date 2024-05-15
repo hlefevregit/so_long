@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlefevre <hlefevre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 15:04:07 by hlefevre          #+#    #+#             */
-/*   Updated: 2021/12/01 17:03:38 by hlefevre         ###   ########.fr       */
+/*   Created: 2024/05/07 17:42:14 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:42:14 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 256
 
 char	*get_backup(char *str)
 {
@@ -73,13 +72,13 @@ char	*gnl_newfile(int fd, char *save)
 	char	*buffer;
 	int		reader;
 
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
+	buffer = (char *)malloc(BUFSIZ + 1);
 	if (!buffer)
 		return (NULL);
 	reader = 1;
 	while (!ft_strchr(save, '\n') && reader != 0)
 	{
-		reader = read(fd, buffer, BUFFER_SIZE);
+		reader = read(fd, buffer, BUFSIZ);
 		if (reader <= -1)
 		{
 			free(buffer);
@@ -97,7 +96,7 @@ char	*get_next_line(int fd)
 	static char	*save;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFSIZ <= 0)
 		return (0);
 	save = gnl_newfile(fd, save);
 	if (!save)

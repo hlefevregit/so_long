@@ -37,8 +37,8 @@
 # include <stdio.h>
 # include <limits.h>
 # include <fcntl.h>
-# include "src/gnl/get_next_line.h"
-# include <mlx.h>
+# include "./src/gnl/get_next_line.h"
+# include "minilibx-linux/mlx.h"
 
 typedef struct s_position
 {
@@ -115,7 +115,7 @@ void	free_map(char **map_str, t_map *map);
 void	reset(t_game *game);
 void	kill_player(t_game *game);
 void	check_last_lines(char *map_str, t_map *map);
-void	*error_null(const char *message);
+void	*error_null(char *message);
 
 int		init_game(t_game *game, int argc, char **argv);
 int		map_is_valid(int argc, char *argv);
@@ -141,6 +141,9 @@ void	init_exit(t_pic *img, void *mlx);
 void	init_empty(t_pic *img, void *mlx);
 void	init_player(t_pic *img, void *mlx);
 void	ft_putstr(char *str);
+
+void	*ft_calloc(size_t count, size_t size);
+void	*ft_memset(void *b, int c, size_t len);
 
 t_pic	init_image(void *mlx);
 

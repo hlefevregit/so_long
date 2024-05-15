@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlefevre <hlefevre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 14:50:40 by hlefevre          #+#    #+#             */
-/*   Updated: 2021/11/30 14:27:21 by hlefevre         ###   ########.fr       */
+/*   Created: 2024/05/07 17:42:06 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:42:06 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

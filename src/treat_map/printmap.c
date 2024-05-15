@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:53:14 by marvin            #+#    #+#             */
-/*   Updated: 2021/12/20 17:53:14 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/07 17:43:27 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:43:27 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,30 @@ void	print_map(t_game *game)
 	int		col;
 	char	*str;
 
-	//init_image(game->mlx);
+	// init_image(game->mlx);
 	line = 0;
-	while (line < game->map.line)
+	while (line < game->map.line - 1)
 	{
 		col = 0;
-		while (col < game->map.col)
+		while (col < game->map.col + 1)
 		{
 			sprite_print_env(game, line, col);
 			sprite_print_obj(game, line, col);
 			col++;
 		}
-		line++;
 		str = ft_itoa(game->steps);
-		ft_putstr(str);
 		mlx_string_put(game->mlx, game->win, 120, 25, 0xFF0000
 		, str);
 		free(str);
 		if (game->end_game)
 			mlx_string_put(game->mlx, game->win, 150, 25, 0xFFFFFF,
 				"You won, press R to play again");
+		line++;
+	}
+	while (col < game->map.col + 1)
+	{
+		sprite_print_env(game, line, col);
+		sprite_print_obj(game, line, col);
+		col++;
 	}
 }

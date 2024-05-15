@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 21:59:20 by marvin            #+#    #+#             */
-/*   Updated: 2021/12/21 21:59:20 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/07 17:41:51 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:41:51 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	action(int key, t_game *game)
 	//printf("%i\n", key);
 	if (key == ESC)
 	{
-		//printf("%s\n", "cest escape");
+		mlx_destroy_window(game->mlx, game->win);
 		close_window(game);
 	}
 	if (key == R)

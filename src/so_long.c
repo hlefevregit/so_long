@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 14:36:54 by marvin            #+#    #+#             */
-/*   Updated: 2021/12/16 14:36:54 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/07 17:44:37 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:44:37 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 	start_gamestruct(&game);
 	if (init_game(&game, argc, argv) < 0)
 		return (0);
-	mlx_hook(game.win, 2, 0, action, (void *)&game);
-	mlx_hook(game.win, 17, 0, close_window, (void *)&game);
+	mlx_hook(game.win, 2, (1L << 0), action, (void *)&game);
+	mlx_hook(game.win, 17, (1L << 0), close_window, (void *)&game);
 	mlx_loop_hook(game.mlx, update, &game);
 	mlx_loop(game.mlx);
 	return (0);

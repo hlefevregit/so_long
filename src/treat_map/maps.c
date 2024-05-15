@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 16:38:23 by marvin            #+#    #+#             */
-/*   Updated: 2021/12/16 16:38:23 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/07 17:43:21 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:43:21 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	map_is_valid(int argc, char *argv)
 {
 	if (argc == 1)
-		return (errors("y a pas darg gro fdeup"));
+		return (errors("y a pas darg gro fdeup\n"));
 	if (argc > 2)
-		printf("%s\n", "Seulement le premier argument");
+		printf("%s\n", "Seulement le premier argument\n");
 	if (check_ext(argv, ".ber") <= 0)
-		return (errors("wrong extension of the file"));
+		return (errors("wrong extension of the file\n"));
 	return (1);
 }
 
@@ -47,7 +47,7 @@ int	backup_map(t_map *map, char **map_str)
 	if (!map->save)
 		return (0);
 	i = 0;
-	while (i < line)
+	while (i < line - 1)
 	{
 		map->save[i] = ft_strdup(map_str[i]);
 		i++;

@@ -3,62 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlefevre <hlefevre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 17:37:47 by hlefevre          #+#    #+#             */
-/*   Updated: 2021/10/28 12:39:47 by hlefevre         ###   ########.fr       */
+/*   Created: 2024/05/07 17:43:49 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:43:49 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-int	ft_nbrlen(int c)
+static int	num_digit(long num)
 {
-	int	i;
+	int	cur;
 
-	i = 0;
-	if (c < 0)
+	cur = 0;
+	if (num == 0)
+		return (1);
+	if (num < 0)
+		cur++;
+	while (num != 0)
 	{
-		c *= -1;
-		i++;
+		num = num / 10;
+		cur++;
 	}
-	while (c > 0)
-	{
-		i++;
-		c = c / 10;
-	}
-	return (i);
-}
-
-char	*ft_gest_fill(long n, char *dest, int *i)
-{
-	if (n > 9)
-	{
-		ft_gest_fill(n / 10, dest, i);
-		ft_gest_fill(n % 10, dest, i);
-	}
-	else
-		dest[(*i)++] = n + 48;
-	return (dest);
+	return (cur);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*dest;
-	int		i;
-	long	nbr;
+	long	len;
+	long	nl;
+	char	*result;
 
-	nbr = n;
-	i = 0;
-	dest = (char *)malloc(sizeof(char) * (ft_nbrlen(nbr) + 1));
-	if (!dest)
-		return (NULL);
+	len = num_digit(n);
+	nl = n;
 	if (n < 0)
+		nl *= -1;
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (NULL);
+	result[len] = 0;
+	if (nl == 0)
+		result[0] = '0';
+	else
 	{
-		dest[i++] = '-';
-		nbr = nbr * -1;
+		while (len--, nl != 0)
+		{
+			result[len] = (nl % 10) + '0';
+			nl = (nl - (nl % 10)) / 10;
+		}
+		if (n < 0)
+			result[len] = '-';
 	}
-	dest = ft_gest_fill(nbr, dest, &i);
-	dest[i] = '\0';
-	return (dest);
+	return (result);
 }

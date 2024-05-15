@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hulefevr <hulefevr@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 15:53:17 by marvin            #+#    #+#             */
-/*   Updated: 2021/12/16 15:53:17 by marvin           ###   ########.fr       */
+/*   Created: 2024/05/07 17:41:43 by hulefevr          #+#    #+#             */
+/*   Updated: 2024/05/07 17:41:43 by hulefevr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_mapstruct(t_map *map)
 {
 	map->col = 0;
+	map->end_col = 0;
 	map->line = 0;
 	map->valid = 1;
 	map->check.collect = 0;
@@ -39,7 +40,7 @@ void	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->map.col * TILES,
-			game->map.line * TILES, "so_long mon frere");
+			(game->map.line - 1) * TILES, "so_long mon frere");
 }
 
 int	init_game(t_game *game, int argc, char **argv)
