@@ -60,7 +60,6 @@ int	action(int key, t_game *game)
 
 	line = game->map.player.y;
 	col = game->map.player.x;
-	printf("%i\n", key);
 	if (key == ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);

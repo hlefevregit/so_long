@@ -15,11 +15,11 @@
 int	valid_cpe(t_map *map)
 {
 	if (map->check.collect < 1)
-		return (errors("WRONG ! (pas de pièces)"));
-	if (map->check.exit < 1)
-		return (errors("WRONG ! (pas d'exit"));
+		return (errors("WRONG ! (collectiblr)\n"));
+	if (map->check.exit != 1)
+		return (errors("WRONG ! (exit)\n"));
 	if (map->check.player != 1)
-		return (errors("WRONG ! Pas de player"));
+		return (errors("WRONG ! (player)\n"));
 	return (1);
 }
 
@@ -33,7 +33,7 @@ int	check_wall(char c)
 {
 	if (c == '1')
 		return (1);
-	printf("%s\n", "error 3");
+	ft_putstr("Error\nNot good map value for walls\n");
 	return (0);
 }
 

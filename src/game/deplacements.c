@@ -12,6 +12,16 @@
 
 #include "../../so_long.h"
 
+void	print_steps(int steps)
+{
+	char	*str;
+
+	str = ft_itoa(steps);
+	ft_putstr(str);
+	write(1, "\n", 1);
+	free(str);
+}
+
 void	check_side(t_game *game, int key)
 {
 	if (key == SOUTH)
@@ -45,6 +55,7 @@ void	move_player(t_game *game, int line, int col, int key)
 		game->map.player.y = line;
 		game->map.player.x = col;
 		game->steps++;
+		print_steps(game->steps);
 	}
 }
 

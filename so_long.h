@@ -66,6 +66,7 @@ typedef struct s_map
 	t_pos		player_ini;
 	t_map_check	check;
 	char		**map;
+	char		**map_floodfill;
 	char		**save;
 }				t_map;
 
@@ -134,8 +135,9 @@ int		close_window(t_game *game);
 
 char	*ft_strdup(const char *src);
 char	*ft_itoa(int n);
+char	*ft_strtrim(char const *s1, char const *set);
 char	**init_map(t_game *game, int argc, char **argv);
-char	**read_map(char *path, t_map *map);
+char	**read_map(char *path, t_map *map, t_game *game);
 
 void	init_collect(t_pic *img, void *mlx);
 void	init_wall(t_pic *img, void *mlx);
@@ -146,6 +148,8 @@ void	ft_putstr(char *str);
 
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
+
+int		valid_path(t_game *game, int fd);
 
 t_pic	init_image(void *mlx);
 

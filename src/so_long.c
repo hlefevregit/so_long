@@ -27,8 +27,7 @@ int	main(int argc, char **argv)
 	start_gamestruct(&game);
 	if (init_game(&game, argc, argv) < 0)
 		return (0);
-	printf("Game en cours\n");
-	mlx_hook(game.win, 2, (1L<<0), action, &game);
+	mlx_hook(game.win, 2, (1L << 0), action, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop_hook(game.mlx, update, &game);
 	mlx_loop(game.mlx);

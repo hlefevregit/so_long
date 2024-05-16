@@ -37,10 +37,11 @@ SRCS =	./src/so_long.c \
 		$(PATH_UT)ft_putstr.c \
 		$(PATH_UT)ft_calloc.c \
 		$(PATH_UT)ft_memset.c \
+		$(PATH_MAP)path_finding.c \
 
 		
 
-CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -fsanitize=address -g
 
 CC = gcc
 

@@ -29,10 +29,10 @@ char	**init_map(t_game *game, int argc, char **argv)
 	char	**map;
 
 	if (!map_is_valid(argc, argv[1]))
-		return (error_null("la carte é pa bone gro nulos"));
-	map = read_map(argv[1], &game->map);
+		exit(EXIT_FAILURE);
+	map = read_map(argv[1], &game->map, game);
 	if (!map)
-		return (error_null("c pa la bone carte mon reuf"));
+		exit(EXIT_FAILURE);
 	return (map);
 }
 
